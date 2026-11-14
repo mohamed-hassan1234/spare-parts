@@ -1,0 +1,36 @@
+{
+  "name": "autoparts-erp",
+  "private": true,
+  "version": "1.0.0",
+  "description": "AutoParts ERP — car spare parts inventory, POS and accounting system",
+  "workspaces": [
+    "shared",
+    "server",
+    "client"
+  ],
+  "engines": {
+    "node": ">=20.11"
+  },
+  "scripts": {
+    "dev:db": "node scripts/dev-mongo.mjs",
+    "dev:server": "npm run dev -w server",
+    "dev:client": "npm run dev -w client",
+    "build": "npm run build -w server && npm run build -w client",
+    "typecheck": "npm run typecheck -w server && npm run typecheck -w client",
+    "test": "npm run test -w server",
+    "init-admin": "npm run init-admin -w server",
+    "migrate": "npm run migrate -w server",
+    "seed:dev": "npm run seed:dev -w server",
+    "lint": "eslint server/src client/src client/e2e shared/src",
+    "format:check": "prettier --check \"server/src/**/*.ts\" \"client/src/**/*.{ts,tsx}\" \"client/e2e/**/*.ts\" \"shared/src/**/*.ts\"",
+    "format": "prettier --write \"server/src/**/*.ts\" \"client/src/**/*.{ts,tsx}\" \"client/e2e/**/*.ts\" \"shared/src/**/*.ts\"",
+    "test:client": "npm run test -w client",
+    "test:e2e": "npm run test:e2e -w client",
+    "test:all": "npm run typecheck && npm run lint && npm test && npm run test:client && npm run build"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.5",
+    "prettier": "^3.10.1"
+  },
+  "type": "module"
+}

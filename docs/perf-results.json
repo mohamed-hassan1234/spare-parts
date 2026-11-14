@@ -1,0 +1,120 @@
+{
+  "ranAt": "2026-11-12T19:46:36.508Z",
+  "environment": {
+    "os": "Windows_NT 10.0.26200",
+    "cpu": "13th Gen Intel(R) Core(TM) i7-1355U",
+    "cores": 12,
+    "ramGb": 15.7,
+    "node": "v22.14.0",
+    "mongodb": "8.0.11",
+    "topology": "single-node replica set on the same machine as the API (localhost)"
+  },
+  "results": [
+    {
+      "scenario": "Product search (GET /products?search=)",
+      "requests": 400,
+      "concurrency": 10,
+      "medianMs": 87.3,
+      "p95Ms": 164.9,
+      "maxMs": 204.8,
+      "errorRatePct": 0,
+      "throughputRps": 101.8
+    },
+    {
+      "scenario": "Barcode lookup (GET /products/lookup)",
+      "requests": 400,
+      "concurrency": 10,
+      "medianMs": 92.6,
+      "p95Ms": 166.5,
+      "maxMs": 177.1,
+      "errorRatePct": 0,
+      "throughputRps": 94.5
+    },
+    {
+      "scenario": "Dashboard KPIs (GET /dashboard/overview)",
+      "requests": 100,
+      "concurrency": 5,
+      "medianMs": 239.7,
+      "p95Ms": 376.1,
+      "maxMs": 502.1,
+      "errorRatePct": 0,
+      "throughputRps": 19.6
+    },
+    {
+      "scenario": "Dashboard charts (GET /dashboard/charts)",
+      "requests": 60,
+      "concurrency": 5,
+      "medianMs": 249.2,
+      "p95Ms": 360.9,
+      "maxMs": 365.4,
+      "errorRatePct": 0,
+      "throughputRps": 19
+    },
+    {
+      "scenario": "Sales report (GET /reports/sales)",
+      "requests": 60,
+      "concurrency": 5,
+      "medianMs": 99.5,
+      "p95Ms": 172.6,
+      "maxMs": 173.1,
+      "errorRatePct": 0,
+      "throughputRps": 45.7
+    },
+    {
+      "scenario": "Profit & loss (GET /reports/profit-loss)",
+      "requests": 100,
+      "concurrency": 5,
+      "medianMs": 45.3,
+      "p95Ms": 84.6,
+      "maxMs": 87.1,
+      "errorRatePct": 0,
+      "throughputRps": 98.2
+    },
+    {
+      "scenario": "Reconciliation (GET /finance/reconciliation)",
+      "requests": 20,
+      "concurrency": 2,
+      "medianMs": 78,
+      "p95Ms": 102.8,
+      "maxMs": 102.8,
+      "errorRatePct": 0,
+      "throughputRps": 24.9
+    },
+    {
+      "scenario": "POS checkout (POST /sales, 1 cashier, sequential)",
+      "requests": 50,
+      "concurrency": 1,
+      "medianMs": 71.1,
+      "p95Ms": 136.5,
+      "maxMs": 189.1,
+      "errorRatePct": 0,
+      "throughputRps": 12.4
+    },
+    {
+      "scenario": "POS checkout (POST /sales, 3 tills in parallel)",
+      "requests": 60,
+      "concurrency": 3,
+      "medianMs": 310,
+      "p95Ms": 768.4,
+      "maxMs": 1096.1,
+      "errorRatePct": 0,
+      "throughputRps": 7.8
+    },
+    {
+      "scenario": "POS checkout (POST /sales, 10 concurrent on one product — stress)",
+      "requests": 200,
+      "concurrency": 10,
+      "medianMs": 1244.7,
+      "p95Ms": 6643.4,
+      "maxMs": 10535.6,
+      "errorRatePct": 0,
+      "throughputRps": 4.8
+    }
+  ],
+  "integrityAfterLoad": {
+    "reconciliationOk": true,
+    "failedChecks": [],
+    "perfProductStockAfter": 4690,
+    "expectedStock": 4690
+  }
+}
