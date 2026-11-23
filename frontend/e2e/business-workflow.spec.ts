@@ -142,7 +142,7 @@ test('11–12. generate the invoice and print the receipt (PDF)', async () => {
   const a4 = await page.request.get(invoiceHref);
   expect(a4.status()).toBe(200);
   expect(a4.headers()['content-type']).toBe('application/pdf');
-  const receipt = await page.request.get(invoiceHref.replace('a4', 'thermal'));
+  const receipt = await page.request.get(invoiceHref.replace('format=a4', 'format=thermal'));
   expect(receipt.headers()['content-type']).toBe('application/pdf');
   expect((await receipt.body()).subarray(0, 5).toString()).toBe('%PDF-');
   await page.getByRole('dialog').getByRole('button', { name: 'New sale' }).click();

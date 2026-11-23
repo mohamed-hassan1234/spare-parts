@@ -4,6 +4,7 @@ import { connectDb, bootstrap, disconnectDb } from './db/index.js';
 import { migrationStatus } from './db/migrations.js';
 import { createSuperAdmin, resetPasswordCli } from './modules/auth/auth.service.js';
 import { seedDev } from './db/seed-dev.js';
+import { assertSeedAllowed, seedSystem, verifySeed } from './db/seed.js';
 import { createBackup, restoreBackup, verifyBackupFile } from './modules/backup/backup.service.js';
 
 /**
@@ -11,6 +12,8 @@ import { createBackup, restoreBackup, verifyBackupFile } from './modules/backup/
  *   init-admin       Create the single Super Admin (prompts; or INIT_ADMIN_* env vars for automation)
  *   reset-password   Reset a user's password and revoke all their sessions
  *   migrate          Apply pending schema migrations and ensure indexes
+ *   seed             Insert missing required system data (idempotent, never deletes)
+ *   seed-verify      Read-only check of required system data
  *   seed-dev         Insert fictional demo data (refuses in production / non-empty DB)
  *   backup           Create an encrypted backup now
  *   verify <file>    Verify a backup file decrypts and parses
@@ -38,7 +41,27 @@ async function ask(question: string, hidden = false): Promise<string> {
 async function main() {
   const [cmd, ...args] = process.argv.slice(2);
   if (!cmd || cmd === 'help') {
-    console.log('Commands: init-admin | reset-password | migrate | seed-dev | backup | verify <file> | restore <file> --target <db> [--force-live]');
+    console.log('Commands: init-admin | reset-password | migrate | seed | seed-verify | seed-dev | backup | verify <file> | restore <file> --target <db> [--force-live]');
+    return;
+  }
+  if (cmd === 'seed' || cmd === 'seed-verify') {
+    if (cmd === 'seed') assertSeedAllowed();
+    await connectDb();
+    try {
+      if (cmd === 'seed') {
+        const rows = await seedSystem();
+        console.table(rows);
+        if (rows.some((r) => r.failed > 0)) process.exitCode = 1;
+      } else {
+        const checks = await verifySeed();
+        console.table(checks);
+        const failed = checks.filter((c) => !c.ok).length;
+        console.log(failed ? `Seed verification FAILED: ${failed} check(s).` : `Seed verification passed: ${checks.length} checks.`);
+        if (failed) process.exitCode = 1;
+      }
+    } finally {
+      await disconnectDb();
+    }
     return;
   }
   await connectDb();

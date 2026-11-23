@@ -209,7 +209,7 @@ export function BackupsPage() {
           </CardHeader>
           <CardContent className="grid gap-2 text-sm">
             <p>Restore into a new database first and check it:</p>
-            <code className="rounded bg-muted px-2 py-1 text-xs">npm run restore -w server -- &lt;file&gt; --target autoparts_restore_check</code>
+            <code className="rounded bg-muted px-2 py-1 text-xs">npm run restore -w backend -- &lt;file&gt; --target autoparts_restore_check</code>
             <p className="text-muted-foreground">
               Replacing the live database needs <code>--force-live</code>, typed confirmation, and takes a pre-restore backup automatically. See BACKUP_AND_RESTORE.md.
             </p>

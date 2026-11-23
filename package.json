@@ -5,28 +5,35 @@
   "description": "AutoParts ERP — car spare parts inventory, POS and accounting system",
   "workspaces": [
     "shared",
-    "server",
-    "client"
+    "backend",
+    "frontend"
   ],
   "engines": {
-    "node": ">=20.11"
+    "node": ">=22.9"
   },
   "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "bootstrap": "node scripts/bootstrap.mjs",
+    "dev": "node scripts/dev.mjs",
     "dev:db": "node scripts/dev-mongo.mjs",
-    "dev:server": "npm run dev -w server",
-    "dev:client": "npm run dev -w client",
-    "build": "npm run build -w server && npm run build -w client",
-    "typecheck": "npm run typecheck -w server && npm run typecheck -w client",
-    "test": "npm run test -w server",
-    "init-admin": "npm run init-admin -w server",
-    "migrate": "npm run migrate -w server",
-    "seed:dev": "npm run seed:dev -w server",
-    "lint": "eslint server/src client/src client/e2e shared/src",
-    "format:check": "prettier --check \"server/src/**/*.ts\" \"client/src/**/*.{ts,tsx}\" \"client/e2e/**/*.ts\" \"shared/src/**/*.ts\"",
-    "format": "prettier --write \"server/src/**/*.ts\" \"client/src/**/*.{ts,tsx}\" \"client/e2e/**/*.ts\" \"shared/src/**/*.ts\"",
-    "test:client": "npm run test -w client",
-    "test:e2e": "npm run test:e2e -w client",
-    "test:all": "npm run typecheck && npm run lint && npm test && npm run test:client && npm run build"
+    "dev:backend": "npm run dev -w backend",
+    "dev:frontend": "npm run dev -w frontend",
+    "build": "npm run build -w backend && npm run build -w frontend",
+    "start": "node scripts/start.mjs",
+    "typecheck": "npm run typecheck -w backend && npm run typecheck -w frontend",
+    "test": "npm run test -w backend",
+    "init-admin": "npm run init-admin -w backend",
+    "reset-password": "npm run reset-password -w backend",
+    "migrate": "npm run migrate -w backend",
+    "seed": "npm run seed -w backend",
+    "seed:verify": "npm run seed:verify -w backend",
+    "seed:dev": "npm run seed:dev -w backend",
+    "lint": "eslint backend/src frontend/src frontend/e2e shared/src",
+    "format:check": "prettier --check \"backend/src/**/*.ts\" \"frontend/src/**/*.{ts,tsx}\" \"frontend/e2e/**/*.ts\" \"shared/src/**/*.ts\"",
+    "format": "prettier --write \"backend/src/**/*.ts\" \"frontend/src/**/*.{ts,tsx}\" \"frontend/e2e/**/*.ts\" \"shared/src/**/*.ts\"",
+    "test:frontend": "npm run test -w frontend",
+    "test:e2e": "npm run test:e2e -w frontend",
+    "test:all": "npm run typecheck && npm run lint && npm test && npm run test:frontend && npm run build"
   },
   "devDependencies": {
     "eslint": "^9.39.5",
