@@ -1058,7 +1058,9 @@ export function ProfitLossStatement({ pl }: { pl: any }) {
         {row('Cost of goods sold (FIFO)', pl.cogs, { neg: true })}
         {row('Gross profit', pl.grossProfit, { bold: true, hint: `${pl.grossMarginPct}% margin` })}
         <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Operating expenses</p>
-        {pl.expensesByCategory.map((e: any) => row(e.category, e.amount, { neg: true, indent: true }))}
+        {pl.expensesByCategory.map((e: any) => (
+          <Fragment key={e.category}>{row(e.category, e.amount, { neg: true, indent: true })}</Fragment>
+        ))}
         {pl.inventoryLoss ? row('Inventory shrinkage & damage', pl.inventoryLoss, { neg: true, indent: true }) : null}
         {row('Total operating expenses', pl.totalOperatingExpenses + (pl.inventoryLoss ?? 0), { neg: true })}
         {row('Operating profit', pl.operatingProfit, { bold: true, hint: `${pl.operatingMarginPct}% margin` })}

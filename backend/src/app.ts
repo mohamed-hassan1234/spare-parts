@@ -80,7 +80,7 @@ export function createApp() {
   app.use('/api', notFoundHandler);
 
   // Serve the built SPA in production (single origin, no CORS needed).
-  const clientDist = path.resolve(process.cwd(), '../client/dist');
+  const clientDist = path.resolve(process.cwd(), '../frontend/dist');
   if (env.NODE_ENV === 'production' && fs.existsSync(clientDist)) {
     app.use(express.static(clientDist, { index: false, maxAge: '1h' }));
     app.get(/^\/(?!api|uploads).*/, (_req, res) => res.sendFile(path.join(clientDist, 'index.html')));

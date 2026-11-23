@@ -34,7 +34,7 @@ function findMongod() {
     const bin = fs.readdirSync(dir).filter((f) => /^mongod.*(\.exe)?$/.test(f) && !f.endsWith('.md5')).sort().reverse()[0];
     if (bin) return path.join(dir, bin);
   }
-  throw new Error('mongod not found. Install MongoDB 7+ or set MONGOD_PATH (or run `npm test -w server` once to download a cached binary).');
+  throw new Error('mongod not found. Install MongoDB 7+ or set MONGOD_PATH (or run `npm test -w backend` once to download a cached binary).');
 }
 
 const mongod = findMongod();

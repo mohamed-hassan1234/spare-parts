@@ -14,7 +14,7 @@ Browser (React SPA) ──HTTPS──▶ Express API (/api/v1) ──transaction
 
 ## Server
 
-`server/src/modules/<domain>/` holds each domain as **models** (Mongoose schemas, indexes, immutability hooks), **service** (business rules and transactions — the only place that writes), and **routes** (HTTP + zod validation + permission). Domains: `auth`, `catalog`, `partners` (customers/suppliers), `purchases`, `inventory`, `sales` (POS, payments, returns, warranty), `expenses`, `ledger`, `finance` (expense, cash and ledger routes), `reports`, `admin` (settings, notifications, audit, backups), `ai`, `backup`, `system`.
+`backend/src/modules/<domain>/` holds each domain as **models** (Mongoose schemas, indexes, immutability hooks), **service** (business rules and transactions — the only place that writes), and **routes** (HTTP + zod validation + permission). Domains: `auth`, `catalog`, `partners` (customers/suppliers), `purchases`, `inventory`, `sales` (POS, payments, returns, warranty), `expenses`, `ledger`, `finance` (expense, cash and ledger routes), `reports`, `admin` (settings, notifications, audit, backups), `ai`, `backup`, `system`.
 
 Cross-cutting pieces:
 

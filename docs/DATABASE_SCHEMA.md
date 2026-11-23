@@ -47,4 +47,4 @@ MongoDB 7+ **replica set** (transactions are mandatory). All money fields are in
 
 ## Migrations
 
-`server/src/db/migrations.ts` holds forward-only migrations, applied once on start (`npm run migrate` shows status). `0002-notification-isread-flag` replaced an index unsupported on MongoDB 8.0.
+`backend/src/db/migrations.ts` holds forward-only migrations, applied once on start (`npm run migrate` shows status). `0002-notification-isread-flag` replaced an index unsupported on MongoDB 8.0.

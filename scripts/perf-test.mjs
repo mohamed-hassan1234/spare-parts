@@ -16,7 +16,7 @@ import { randomUUID } from 'node:crypto';
 import { MongoClient } from 'mongodb';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const server = path.join(root, 'server');
+const server = path.join(root, 'backend');
 const PORT = Number(process.env.PERF_PORT ?? 4400);
 const BASE = `http://127.0.0.1:${PORT}/api/v1`;
 const MONGO = process.env.PERF_MONGODB_URI ?? 'mongodb://127.0.0.1:27018/autoparts_perf?replicaSet=rs0';

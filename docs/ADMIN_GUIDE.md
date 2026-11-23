@@ -45,4 +45,4 @@ Version 1 runs with the single Super Admin. Roles for Manager, Cashier, Storekee
 
 ## Recovery
 
-Forgotten password: on the server console run `npm run reset-password -w server -- <username>`. This signs the user out everywhere and is audited.
+Forgotten password: on the server console run `npm run reset-password -w backend -- <username>`. This signs the user out everywhere and is audited.

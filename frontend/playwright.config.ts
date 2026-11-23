@@ -28,7 +28,7 @@ export default defineConfig({
   webServer: [
     {
       command: 'npx tsx src/index.ts',
-      cwd: '../server',
+      cwd: '../backend',
       port: API_PORT,
       reuseExistingServer: false,
       timeout: 120_000,

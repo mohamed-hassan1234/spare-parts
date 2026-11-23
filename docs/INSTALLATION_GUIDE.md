@@ -4,7 +4,7 @@
 
 | Software | Version | Notes |
 | --- | --- | --- |
-| Node.js | 20.11 or newer (tested with 22.14) | https://nodejs.org — includes npm |
+| Node.js | 22.9 or newer (tested with 22.14) | https://nodejs.org — includes npm |
 | MongoDB Community Server | 7.0 or 8.x | Must run as a **replica set**. The dev script starts one for you. |
 | Git (optional) | any | |
 
@@ -21,7 +21,7 @@ npm install
 ## 3. Configure
 
 ```bash
-copy .env.example .env
+npm run setup
 ```
 
 Generate two secrets and paste them into `.env` as `APP_SECRET` and `BACKUP_ENCRYPTION_KEY`:
@@ -53,11 +53,11 @@ You are asked for a username, full name, optional recovery email and a password 
 Two more terminals:
 
 ```bash
-npm run dev:server
+npm run dev:backend
 ```
 
 ```bash
-npm run dev:client
+npm run dev:frontend
 ```
 
 Open http://localhost:5173 and sign in.
@@ -80,4 +80,4 @@ The test suite starts its own temporary in-memory MongoDB replica set; it never 
 
 * **"MongoDB must run as a replica set"** — use `npm run dev:db`, or add `?replicaSet=rs0` to `MONGODB_URI` for your own replica set.
 * **Port 5173/4000 already in use** — stop the other program or change `PORT` in `.env` (and the Vite proxy via `VITE_API_PROXY`).
-* **Locked out after failed logins** — wait `LOGIN_LOCK_MINUTES`, or reset from the console: `npm run reset-password -w server -- <username>`.
+* **Locked out after failed logins** — wait `LOGIN_LOCK_MINUTES`, or reset from the console: `npm run reset-password -w backend -- <username>`.

@@ -5,11 +5,11 @@ All automated tests run against **isolated** databases: the server suite starts 
 | Level | Tooling | Location | Command |
 | --- | --- | --- | --- |
 | 1 Static | TypeScript (strict), ESLint 9 + typescript-eslint + react-hooks, Prettier, `npm audit`, production build | root | `npm run typecheck` · `npm run lint` · `npm run format:check` · `npm run build` |
-| 2 Unit | Vitest | `server/src/tests/unit`, `client/src/test/format.test.ts` | `npm test` · `npm run test:client` |
-| 3 Database integration | Vitest + mongodb-memory-server replica set | `server/src/tests/integration/*` | `npm test` |
-| 4 REST API | Supertest (same files) | `server/src/tests/integration/*` | `npm test` |
-| 5 Frontend components | Vitest + Testing Library + jsdom | `client/src/test/components.test.tsx` | `npm run test:client` |
-| 6 End-to-end | Playwright (Chromium) — desktop, tablet 820×1180, mobile Pixel 7 | `client/e2e/*` | `npm run test:e2e` (needs `npm run dev:db`) |
+| 2 Unit | Vitest | `backend/src/tests/unit`, `frontend/src/test/format.test.ts` | `npm test` · `npm run test:frontend` |
+| 3 Database integration | Vitest + mongodb-memory-server replica set | `backend/src/tests/integration/*` | `npm test` |
+| 4 REST API | Supertest (same files) | `backend/src/tests/integration/*` | `npm test` |
+| 5 Frontend components | Vitest + Testing Library + jsdom | `frontend/src/test/components.test.tsx` | `npm run test:frontend` |
+| 6 End-to-end | Playwright (Chromium) — desktop, tablet 820×1180, mobile Pixel 7 | `frontend/e2e/*` | `npm run test:e2e` (needs `npm run dev:db`) |
 | 7 Financial reconciliation | `/finance/reconciliation` asserted after workflows | business-flow, scenarios, more-workflows, E2E step 23, load test | — |
 | 8 Concurrency | parallel requests with Supertest | scenarios (F, G), business-flow | `npm test` |
 | 9 Security | route matrix, CSRF, injection, uploads, TOTP, session invalidation | `security.test.ts`, `auth.test.ts`, E2E step 25 | `npm test` |

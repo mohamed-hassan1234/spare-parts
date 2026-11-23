@@ -12,7 +12,7 @@ export default async function globalSetup() {
   const client = await MongoClient.connect(uri);
   await client.db(dbName).dropDatabase();
   await client.close();
-  const server = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../server');
+  const server = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../backend');
   execFileSync(process.execPath, [path.resolve(server, '../node_modules/tsx/dist/cli.mjs'), 'src/cli.ts', 'init-admin'], {
     cwd: server,
     stdio: 'inherit',
